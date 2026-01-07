@@ -1,0 +1,45 @@
+body{
+  background-color: #e3f2fd
+  font-family: Arial, Sans-Serif;
+  text-align: center;
+  padding-top: 50px;
+}
+h1{
+  color: #0d47a1;
+}
+p{
+  font-size: 18px;
+}
+ul {
+  list-style-position: inside;
+  paddling-left: 0;
+}
+li {
+  margin: 5px 0;
+}
+.card{
+  background-color: white;
+  width: 80%;
+  max width: 500px;
+  margin: auto;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px
+  rgba(0,0,0,0.1);
+}
+.btn{
+  display: incline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #0d47a1;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.profile-pic{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
