@@ -1,31 +1,596 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title> My First Website</title>
- <link rel="stylesheet" href="style.css">
-
-  </head>
-  <body>
-    <div class="card"> 
-    <h1>Hello, I am Tanzila</h1>
-    <p> This is my first website.</p>
-    <h2>About Me</h2>
-    <p>
-      I am Tanzila Tabassum, a class 11th Science student.
-      I am learning web developing.
-    </p>
-    <h2>Education</h2>
-    <p>Class 11th - Science (PCM)</p>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanzila Tabassum | Aspiring Developer</title>
     
-    <h2>Skills</h2>
-    <ul>
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>Basic Web Design</li>
-    </ul>
-    <h2>Contact: 7004853964</h2>
-    <a href="tel: 7004853964" class="btn">Call Me</a>
-    <p>Email: tanno01@gmail.com</p>
-</div>
-  </body>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Config & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        premium: {
+                            dark: '#0a0a0a',
+                            charcoal: '#171717',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB',
+                            text: '#e5e5e5',
+                            muted: '#a3a3a3'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Utilities */
+        .glass-panel {
+            background: rgba(23, 23, 23, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gold-glow:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #F3E5AB, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Smooth reveal animation classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-premium-dark text-premium-text font-sans antialiased selection:bg-premium-gold selection:text-premium-dark overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="glass-panel rounded-full px-6 py-4 flex justify-between items-center shadow-2xl">
+                <a href="#" class="font-serif text-2xl font-semibold tracking-wide text-white">
+                    T<span class="text-premium-gold">.</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-sm uppercase tracking-widest text-premium-muted hover:text-premium-gold transition-colors duration-300">About</a>
+                    <a href="#skills" class="text-sm uppercase tracking-widest text-premium-muted hover:text-premium-gold transition-colors duration-300">Skills</a>
+                    <a href="#projects" class="text-sm uppercase tracking-widest text-premium-muted hover:text-premium-gold transition-colors duration-300">Work</a>
+                    <a href="#contact" class="px-5 py-2 rounded-full border border-premium-gold text-premium-gold hover:bg-premium-gold hover:text-premium-dark transition-all duration-300 text-sm font-medium">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden absolute top-24 left-0 w-full px-6">
+            <div class="glass-panel rounded-2xl p-6 flex flex-col space-y-4 text-center">
+                <a href="#about" class="block py-2 text-premium-muted hover:text-white">About</a>
+                <a href="#skills" class="block py-2 text-premium-muted hover:text-white">Skills</a>
+                <a href="#projects" class="block py-2 text-premium-muted hover:text-white">Work</a>
+                <a href="#contact" class="block py-2 text-premium-gold">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Abstract Background Elements -->
+        <div class="absolute top-1/4 -left-10 w-96 h-96 bg-premium-gold/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 -right-10 w-96 h-96 bg-blue-900/10 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center reveal active">
+            <p class="text-premium-gold uppercase tracking-[0.2em] text-sm mb-6 font-medium">Portfolio 2026</p>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight mb-8">
+                Hello, I am <br>
+                <span class="text-gradient">Tanzila Tabassum</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-premium-muted max-w-2xl mx-auto font-light leading-relaxed mb-10">
+                A Class 11th Science scholar combining academic discipline with a passion for creative Web Development.
+            </p>
+            
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <a href="#projects" class="px-8 py-4 bg-premium-gold text-premium-dark font-semibold rounded-full hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+                    View Projects
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <i class="fa-solid fa-chevron-down text-premium-muted/50 text-xl"></i>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Image/Visual Column -->
+                <div class="relative reveal flex justify-center">
+                    <!-- Circular Image Container -->
+                    <div class="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden relative group border-4 border-premium-gold/20 shadow-[0_0_40px_rgba(212,175,55,0.15)]">
+                        <!-- ImgBB Direct Link -->
+                        <img src="https://i.ibb.co/cSPDz9cL/image.jpg" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" alt="Tanzila Tabassum" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale hover:grayscale-0">
+                        
+                        <!-- Overlay gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-premium-dark/50 via-transparent to-transparent"></div>
+                    </div>
+                    
+                    <!-- Decorative Element -->
+                    <div class="absolute bottom-0 right-10 w-40 h-40 bg-premium-gold/10 rounded-full blur-3xl -z-10"></div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="reveal">
+                    <h2 class="font-serif text-4xl md:text-5xl mb-8">About Me</h2>
+                    <div class="space-y-6 text-lg text-premium-muted font-light">
+                        <p>
+                            I am a dedicated student currently pursuing Science (PCM) in Class 11. While my academic focus lies in the sciences, my passion drives me towards the digital realm of Web Development.
+                        </p>
+                        <p>
+                            My journey began with a curiosity about how the web works. Today, I am actively learning HTML, CSS, and JavaScript, building a foundation to create meaningful and responsive digital experiences.
+                        </p>
+                    </div>
+
+                    <!-- Education Card (Mini) -->
+                    <div class="mt-10 p-6 glass-panel rounded-xl border-l-2 border-premium-gold">
+                        <h3 class="text-white font-serif text-xl mb-2">Education</h3>
+                        <p class="text-premium-gold text-sm uppercase tracking-wide mb-1">Class 11 • Science Stream (PCM)</p>
+                        <p class="text-premium-muted text-sm">Focusing on academic excellence while cultivating technical skills.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-premium-charcoal/30">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-premium-gold text-sm uppercase tracking-widest">My Expertise</span>
+                <h2 class="font-serif text-4xl mt-3">Technical Skills</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+                <!-- Skill 1 -->
+                <div class="glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 group gold-glow">
+                    <div class="w-12 h-12 bg-premium-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-html5 text-2xl text-premium-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-2">HTML5</h3>
+                    <p class="text-sm text-premium-muted">Structuring semantic and accessible web content.</p>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 group gold-glow">
+                    <div class="w-12 h-12 bg-premium-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-css3-alt text-2xl text-premium-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-2">CSS3</h3>
+                    <p class="text-sm text-premium-muted">Designing responsive layouts and visual aesthetics.</p>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 group gold-glow">
+                    <div class="w-12 h-12 bg-premium-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-js text-2xl text-premium-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-2">JavaScript</h3>
+                    <p class="text-sm text-premium-muted">Currently learning core logic and DOM manipulation.</p>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 group gold-glow">
+                    <div class="w-12 h-12 bg-premium-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-mobile-screen text-2xl text-premium-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-2">Responsive Design</h3>
+                    <p class="text-sm text-premium-muted">Creating sites that work flawlessly on all devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <span class="text-premium-gold text-sm uppercase tracking-widest">Portfolio</span>
+                    <h2 class="font-serif text-4xl mt-3">Featured Projects</h2>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <p class="text-premium-muted text-sm max-w-xs text-right md:text-left">
+                        A showcase of my learning journey and practical applications.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 reveal">
+                <!-- Project Card 1: Portfolio (No Link) -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-video glass-panel border-0">
+                    <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-black group-hover:scale-105 transition-transform duration-700"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black via-black/50 to-transparent opacity-90">
+                        <h3 class="font-serif text-2xl text-white mb-2">Personal Portfolio V1</h3>
+                        <p class="text-premium-muted text-sm line-clamp-2">
+                            My debut project created to showcase my skills. Built entirely with semantic HTML and custom CSS, featuring responsive design principles.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Calculator (Modal) -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-video glass-panel border-0">
+                    <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 group-hover:scale-105 transition-transform duration-700"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black via-black/50 to-transparent opacity-90">
+                        <h3 class="font-serif text-2xl text-white mb-2">JS Calculator</h3>
+                        <p class="text-premium-muted text-sm mb-6 line-clamp-2">
+                            A functional calculator interface designed for practice. Currently implementing JavaScript logic for arithmetic operations.
+                        </p>
+                        <div class="flex gap-4">
+                            <button onclick="openCalculator()" class="text-premium-gold text-sm hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                                Open Calculator <i class="fa-solid fa-calculator text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Ranchi Public School -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-video glass-panel border-0">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 to-black group-hover:scale-105 transition-transform duration-700"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black via-black/50 to-transparent opacity-90">
+                        <h3 class="font-serif text-2xl text-white mb-2">Ranchi Public School</h3>
+                        <p class="text-premium-muted text-sm mb-6 line-clamp-2">
+                            A complete institutional website for Ranchi Public School, designed to manage admissions and student information digitally.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://ranchi-public.netlify.app/" target="_blank" class="text-premium-gold text-sm hover:text-white transition-colors flex items-center gap-2">
+                                Visit Website <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 4: Little Angels -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-video glass-panel border-0">
+                    <div class="absolute inset-0 bg-gradient-to-br from-pink-900 to-black group-hover:scale-105 transition-transform duration-700"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black via-black/50 to-transparent opacity-90">
+                        <h3 class="font-serif text-2xl text-white mb-2">Little Angels School</h3>
+                        <p class="text-premium-muted text-sm mb-6 line-clamp-2">
+                            An engaging and colorful website designed for Little Angels School to showcase their curriculum and facilities.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://little-angle.netlify.app/" target="_blank" class="text-premium-gold text-sm hover:text-white transition-colors flex items-center gap-2">
+                                Visit Website <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 5: Arya School -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-video glass-panel border-0">
+                    <div class="absolute inset-0 bg-gradient-to-br from-orange-900 to-black group-hover:scale-105 transition-transform duration-700"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black via-black/50 to-transparent opacity-90">
+                        <h3 class="font-serif text-2xl text-white mb-2">Arya School</h3>
+                        <p class="text-premium-muted text-sm mb-6 line-clamp-2">
+                            Professional web presence for Arya School, highlighting academic achievements and student activities.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://arya-school.netlify.app/" target="_blank" class="text-premium-gold text-sm hover:text-white transition-colors flex items-center gap-2">
+                                Visit Website <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 6: Paramount School -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-video glass-panel border-0">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-black group-hover:scale-105 transition-transform duration-700"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black via-black/50 to-transparent opacity-90">
+                        <h3 class="font-serif text-2xl text-white mb-2">Paramount School</h3>
+                        <p class="text-premium-muted text-sm mb-6 line-clamp-2">
+                            A modern responsive website for Paramount School, focused on easy navigation for parents and students.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://paramount-school.netlify.app/" target="_blank" class="text-premium-gold text-sm hover:text-white transition-colors flex items-center gap-2">
+                                Visit Website <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 7: Millat School -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-video glass-panel border-0">
+                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-900 to-black group-hover:scale-105 transition-transform duration-700"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black via-black/50 to-transparent opacity-90">
+                        <h3 class="font-serif text-2xl text-white mb-2">Millat School</h3>
+                        <p class="text-premium-muted text-sm mb-6 line-clamp-2">
+                            A dedicated digital platform for Millat School to communicate notices and academic calendars effectively.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://millat-school.netlify.app/" target="_blank" class="text-premium-gold text-sm hover:text-white transition-colors flex items-center gap-2">
+                                Visit Website <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 8: PPHS -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-video glass-panel border-0">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-900 to-black group-hover:scale-105 transition-transform duration-700"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black via-black/50 to-transparent opacity-90">
+                        <h3 class="font-serif text-2xl text-white mb-2">PPHS Official</h3>
+                        <p class="text-premium-muted text-sm mb-6 line-clamp-2">
+                            The official website for PPHS, built to provide a seamless user experience for the school community.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://pphs.netlify.app/" target="_blank" class="text-premium-gold text-sm hover:text-white transition-colors flex items-center gap-2">
+                                Visit Website <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Modal -->
+    <div id="calculator-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="glass-panel p-6 rounded-3xl w-full max-w-sm mx-4 transform scale-95 transition-all duration-300 shadow-[0_0_50px_rgba(212,175,55,0.1)]" id="calculator-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-premium-gold font-serif text-xl">Calculator</h3>
+                <button onclick="closeCalculator()" class="text-premium-muted hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <!-- Display -->
+            <div class="bg-premium-dark/80 p-5 rounded-2xl mb-5 text-right border border-white/5 shadow-inner">
+                <div id="calc-previous" class="text-premium-muted text-sm h-6 font-mono"></div>
+                <div id="calc-current" class="text-white text-4xl font-mono overflow-hidden tracking-widest">0</div>
+            </div>
+
+            <!-- Keypad -->
+            <div class="grid grid-cols-4 gap-3">
+                <button onclick="clearCalc()" class="col-span-2 p-4 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all font-medium">AC</button>
+                <button onclick="deleteLast()" class="p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-premium-gold"><i class="fa-solid fa-delete-left"></i></button>
+                <button onclick="chooseOperation('/')" class="p-4 rounded-xl bg-premium-gold/10 text-premium-gold hover:bg-premium-gold/20 transition-all text-xl">÷</button>
+                
+                <button onclick="appendNumber('7')" class="p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-lg font-medium">7</button>
+                <button onclick="appendNumber('8')" class="p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-lg font-medium">8</button>
+                <button onclick="appendNumber('9')" class="p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-lg font-medium">9</button>
+                <button onclick="chooseOperation('*')" class="p-4 rounded-xl bg-premium-gold/10 text-premium-gold hover:bg-premium-gold/20 transition-all text-xl">×</button>
+                
+                <button onclick="appendNumber('4')" class="p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-lg font-medium">4</button>
+                <button onclick="appendNumber('5')" class="p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-lg font-medium">5</button>
+                <button onclick="appendNumber('6')" class="p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-lg font-medium">6</button>
+                <button onclick="chooseOperation('-')" class="p-4 rounded-xl bg-premium-gold/10 text-premium-gold hover:bg-premium-gold/20 transition-all text-xl">−</button>
+                
+                <button onclick="appendNumber('1')" class="p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-lg font-medium">1</button>
+                <button onclick="appendNumber('2')" class="p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-lg font-medium">2</button>
+                <button onclick="appendNumber('3')" class="p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-lg font-medium">3</button>
+                <button onclick="chooseOperation('+')" class="p-4 rounded-xl bg-premium-gold/10 text-premium-gold hover:bg-premium-gold/20 transition-all text-xl">+</button>
+                
+                <button onclick="appendNumber('0')" class="col-span-2 p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-lg font-medium">0</button>
+                <button onclick="appendNumber('.')" class="p-4 rounded-xl bg-premium-charcoal hover:bg-white/10 transition-all text-lg font-medium">.</button>
+                <button onclick="calculate()" class="p-4 rounded-xl bg-premium-gold text-premium-dark font-bold hover:bg-white transition-all text-xl shadow-[0_0_15px_rgba(212,175,55,0.3)]">=</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gradient-to-b from-premium-dark to-black border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <h2 class="font-serif text-4xl md:text-5xl mb-6">Let's Connect</h2>
+            <p class="text-premium-muted mb-12 max-w-xl mx-auto">
+                I am always open to learning opportunities, constructive feedback, and connecting with fellow developers.
+            </p>
+
+            <div class="flex flex-col md:flex-row justify-center gap-6 mb-16">
+                <a href="mailto:tannovlog01@gmail.com" class="glass-panel px-8 py-6 rounded-xl hover:border-premium-gold/50 transition-all group w-full md:w-auto">
+                    <i class="fa-regular fa-envelope text-2xl text-premium-gold mb-3 block"></i>
+                    <span class="text-sm text-premium-muted group-hover:text-white">tannovlog01@gmail.com</span>
+                </a>
+                
+                <a href="tel:7004854964" class="glass-panel px-8 py-6 rounded-xl hover:border-premium-gold/50 transition-all group w-full md:w-auto">
+                    <i class="fa-solid fa-phone text-2xl text-premium-gold mb-3 block"></i>
+                    <span class="text-sm text-premium-muted group-hover:text-white">+91 700 485 4964</span>
+                </a>
+            </div>
+
+            <footer class="text-premium-muted text-sm pt-8 border-t border-white/5">
+                <p>&copy; 2026 Tanzila Tabassum. Crafted with <i class="fa-solid fa-heart text-red-500 mx-1"></i> using HTML & Tailwind.</p>
+            </footer>
+        </div>
+    </section>
+
+    <!-- Script for Interactions -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const navbar = document.getElementById('navbar');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            const icon = btn.querySelector('i');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+                navbar.classList.remove('bg-premium-dark');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+                navbar.classList.add('bg-premium-dark');
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-premium-dark/90', 'backdrop-blur-md');
+                navbar.querySelector('.glass-panel').classList.remove('shadow-2xl');
+                navbar.querySelector('.glass-panel').classList.add('shadow-none', 'bg-transparent', 'border-0');
+            } else {
+                navbar.classList.remove('bg-premium-dark/90', 'backdrop-blur-md');
+                navbar.querySelector('.glass-panel').classList.add('shadow-2xl');
+                navbar.querySelector('.glass-panel').classList.remove('shadow-none', 'bg-transparent', 'border-0');
+            }
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+
+        // --- Calculator Logic ---
+        const modal = document.getElementById('calculator-modal');
+        const modalContent = document.getElementById('calculator-content');
+        
+        function openCalculator() {
+            modal.classList.remove('hidden');
+            // Small delay to allow display block to render before opacity transition
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeCalculator() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeCalculator();
+        });
+
+        let currentOperand = '0';
+        let previousOperand = '';
+        let operation = undefined;
+
+        const currentDisplay = document.getElementById('calc-current');
+        const previousDisplay = document.getElementById('calc-previous');
+
+        function updateDisplay() {
+            currentDisplay.innerText = currentOperand;
+            if (operation != null) {
+                previousDisplay.innerText = `${previousOperand} ${operation}`;
+            } else {
+                previousDisplay.innerText = '';
+            }
+        }
+
+        function appendNumber(number) {
+            if (number === '.' && currentOperand.includes('.')) return;
+            if (currentOperand === '0' && number !== '.') {
+                currentOperand = number;
+            } else {
+                currentOperand = currentOperand.toString() + number.toString();
+            }
+            updateDisplay();
+        }
+
+        function chooseOperation(op) {
+            if (currentOperand === '') return;
+            if (previousOperand !== '') {
+                calculate();
+            }
+            operation = op;
+            previousOperand = currentOperand;
+            currentOperand = '0';
+            updateDisplay();
+        }
+
+        function calculate() {
+            let computation;
+            const prev = parseFloat(previousOperand);
+            const current = parseFloat(currentOperand);
+            if (isNaN(prev) || isNaN(current)) return;
+            
+            switch (operation) {
+                case '+': computation = prev + current; break;
+                case '-': computation = prev - current; break;
+                case '*': computation = prev * current; break;
+                case '/': computation = prev / current; break;
+                default: return;
+            }
+            
+            currentOperand = computation;
+            operation = undefined;
+            previousOperand = '';
+            updateDisplay();
+        }
+
+        function clearCalc() {
+            currentOperand = '0';
+            previousOperand = '';
+            operation = undefined;
+            updateDisplay();
+        }
+
+        function deleteLast() {
+            currentOperand = currentOperand.toString().slice(0, -1);
+            if (currentOperand === '') currentOperand = '0';
+            updateDisplay();
+        }
+    </script>
+</body>
 </html>
+
+
